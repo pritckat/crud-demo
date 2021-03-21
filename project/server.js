@@ -1,8 +1,9 @@
+const secret = require('./secrets')
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
-const connectionString = "mongodb+srv://dbUser:secret@cluster0.mxlyd.mongodb.net/test?retryWrites=true&w=majority"
+const connectionString = `mongodb+srv://dbUser:${secret}@cluster0.mxlyd.mongodb.net/test?retryWrites=true&w=majority`
 app.use(bodyParser.urlencoded({extended: true}))
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
