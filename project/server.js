@@ -19,6 +19,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           })
           .catch(error => console.error(error))
       })
+      app.get('/', (req, res) => {
+        db.collection('quotes').find().toArray()
+          .then(results => {
+            res.render('index.ejs', {quotes: results})
+          })
+          .catch(/* ... */)
+      })
   })
   .catch(error => console.error(error))
 
@@ -26,11 +33,4 @@ app.listen(3000, function() {
     console.log('listening on 3000')
 })
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html')
-})
-
-// app.post('/quotes', (req, res) => {
-//     console.log(req.body)
-// })
 
