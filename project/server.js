@@ -5,7 +5,7 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = `mongodb+srv://dbUser:${secret}@cluster0.mxlyd.mongodb.net/test?retryWrites=true&w=majority`
 app.use(bodyParser.urlencoded({extended: true}))
-
+app.set('view engine', 'ejs')
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
